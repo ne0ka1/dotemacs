@@ -1,0 +1,8 @@
+#+title: Emacs Dote Files
+
+My personal Emacs configuration.
+
+Features:
+- Evil keybindings, but lighter.
+- Minimal, elegant interface. 
+- Modular. Codes are splitted into ~init-***~ modules.

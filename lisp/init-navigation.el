@@ -1,0 +1,83 @@
+;;; init-navigation.el --- Convenient navigation
+
+;; Navigation inside and between buffer
+
+(straight-use-package 'vimish-fold)
+(straight-use-package 'evil-vimish-fold)
+(straight-use-package 'iflipb)
+(straight-use-package 'ibuffer-projectile)
+(straight-use-package                   ; https://www.emacswiki.org/emacs/OpenWith
+  '(open-with :type git :host github :repo "jpkotta/openwith"))
+
+;;; open url/file
+(global-set-key (kbd "C-c C-o") 'find-file-at-point)
+
+;;; recentf
+(add-hook 'emacs-startup-hook 'recentf-mode)
+(require 'recentf)
+(add-to-list 'recentf-exclude
+             (recentf-expand-file-name no-littering-var-directory))
+(add-to-list 'recentf-exclude
+             (recentf-expand-file-name no-littering-etc-directory))
+(global-set-key (kbd "C-x C-r") 'recentf) ; find-file-read-only
+(setq recentf-max-saved-items 200)
+
+;;; evil-vimish-fold
+(setq evil-vimish-fold-target-modes '(prog-mode conf-mode text-mode))
+(add-hook 'emacs-startup-hook 'global-evil-vimish-fold-mode)
+
+;;; Buffer flip
+(setq iflipb-wrap-around t
+      iflipb-ignore-buffers nil)
+(global-set-key (kbd "C-,") 'iflipb-next-buffer)
+(global-set-key (kbd "C-.") 'iflipb-previous-buffer)
+
+;;; Buffer Management
+;; Manage buffer using iBuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(require 'ibuffer-projectile)
+(setq ibuffer-projectile-prefix "")
+
+(setq ibuffer-show-empty-filter-groups nil ;; Do not show empty groups
+      ibuffer-sorting-mode 'filename/process)
+
+(add-hook 'ibuffer-hook
+     (lambda ()
+       (ibuffer-projectile-set-filter-groups)
+       (unless (eq ibuffer-sorting-mode 'alphabetic)
+         (ibuffer-do-sort-by-alphabetic))))
+
+;;; Window Management
+;; Assumming we use evil windows navigation
+(winner-mode) ;; for undo functionality
+(evil-global-set-key 'motion (kbd "C-w u") 'winner-undo) ; undefined
+(setq windmove-create-window t)
+;; replace evil function so that C-w h/j/k/l also creats windows
+(evil-global-set-key 'motion (kbd "C-w h") 'windmove-left)
+(evil-global-set-key 'motion (kbd "C-w j") 'windmove-down)
+(evil-global-set-key 'motion (kbd "C-w k") 'windmove-up)
+(evil-global-set-key 'motion (kbd "C-w l") 'windmove-right)
+
+;;; Open-with
+(when sys/linuxp
+  (progn
+  (require 'openwith)
+  (setq openwith-associations
+        (list
+         (list (openwith-make-extension-regexp
+                '("mpg" "mpeg" "mp3" "mp4" "flac" "avi" "wmv"
+                  "wav" "mov" "flv" "ogm" "ogg" "mkv"))
+               "vlc" '(file))
+         (list (openwith-make-extension-regexp
+                '("doc" "docx" "xls" "ppt" "odt" "ods" "odg" "odp"))
+               "libreoffice" '(file))
+         (list (openwith-make-extension-regexp
+                '("pdf"))
+               "okular" '(file))
+         (list (openwith-make-extension-regexp
+                '("epub"))
+               "foliate" '(file))))
+  (openwith-mode 1)))
+
+(provide 'init-navigation)
