@@ -13,8 +13,8 @@
 (add-hook 'emacs-startup-hook 'global-activity-watch-mode)
 
 ;;; elfeed
-(setq shr-use-fonts nil)                ; elfeed use shr to display articles
 (elfeed-org)
+(setq elfeed-search-title-max-width 60)
 
 ;; select entries in elfeed-search and remove them
 (defun my-elfeed-db-remove-entry (id)

@@ -32,10 +32,10 @@
 ;;; Font
 (cond
  (sys/winp
-  (set-face-attribute 'default nil :height 140))
+  (set-face-attribute 'default nil :family "Consolas" :height 140))
  (sys/linuxp
   (set-face-attribute 'default nil :family "SFMono Nerd Font Mono" :height 130)
-  (set-face-attribute 'variable-pitch nil :family "EB Garamond" :height 155)
+  (set-face-attribute 'variable-pitch nil :family "Libertinus Sans" :height 140)
   (set-face-attribute 'fixed-pitch-serif nil :family "SFMono Nerd Font Mono" :height '130)
   ;; Emacs recognize Apple Emoji (font already installed)
   (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend)))

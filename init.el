@@ -34,7 +34,7 @@
 
 ;;; org
 (require 'init-org-base)
-;; (require 'init-org-babel.el)
+(require 'init-org-babel)
 (require 'init-org-gtd)
 (require 'init-org-journal)
 

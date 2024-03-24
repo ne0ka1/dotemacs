@@ -55,6 +55,27 @@
 
 ;;; Zetteldeft
 (require 'zetteldeft)
+;; my-zetteldeft-ripgrep (modified from projectile-ripgrep)
+(defun my-zetteldeft-ripgrep (search-term &optional arg)
+  "Run a ripgrep(rg) search with `SEARCH-TERM' at Deft directory.
+
+With an optional prefix argument ARG, SEARCH-TERM is interpreted as a
+regular expression.
+
+This command depends on Emacs package rg being installed to work."
+  (interactive
+   (list (read-string (format "Ripgrep %ssearch for" (if current-prefix-arg "regexp " ""))
+                      nil nil (zetteldeft--get-thing-at-point))
+         current-prefix-arg))
+    (cond
+          ((require 'rg nil 'noerror)
+           (rg-run search-term
+                   "*"                       ;; all files
+                   (deft-directory)
+                   (not arg)                 ;; literal search?
+                   nil))                       ;; no need to confirm
+          (t (error "Package `rg' is not available"))))
+
 ;; set up keybindings
 (define-prefix-command 'zetteldeft-prefix)
 (global-set-key (kbd "C-c d") 'zetteldeft-prefix)

@@ -37,9 +37,10 @@
 ;; (set-face-attribute (car face) nil :height (cdr face))) ; Resize Headings
 ;; (set-face-attribute 'org-document-title nil :weight 'bold :height 1.3) ; Resize title
 
-;; Beautify Lists
-(setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "-") ("*" . "-")))
-(setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•"))) ; Respectively + - *
+;; Beautify Lists and Stars
+(setq org-list-demote-modify-bullet '(("-" . "+") ("+" . "-") ("*" . "-"))
+      org-modern-list '((43 . "◦") (45 . "•") (42 . "•")) ; Respectively + - *
+      org-modern-star '("◉" "○" "◈" "◇" "◉" "○"))
 
 ;; Emphasis Markers and Entities
 (setq org-hide-emphasis-markers t

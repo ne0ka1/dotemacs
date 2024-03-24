@@ -34,7 +34,7 @@
              (grep-mode . emacs)
              (erc-mode . emacs)
              (elfeed-search-mode . emacs)
-             (elfeed-show-mode . emacs)
+             (elfeed-show-mode . motion)
              (xref--xref-buffer-mode . emacs)
              (compilation-mode . emacs)))
   (evil-set-initial-state (car states) (cdr states)))

@@ -1,10 +1,16 @@
 ;;; init-prog.el --- IDE experience for programming
 
+(straight-use-package 'magit)
+(straight-use-package 'evil-magit)
 (straight-use-package 'treemacs)
 (straight-use-package 'treemacs-evil)
 (straight-use-package 'treemacs-projectile)
 (straight-use-package 'projectile)
 (straight-use-package 'rg)
+
+;;; Magit
+(require 'evil-magit)
+(setq evil-magit-use-y-for-yank nil)
 
 ;;; Treemacs
 (global-set-key (kbd "C-x t t") 'treemacs)

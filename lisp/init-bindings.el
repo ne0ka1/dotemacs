@@ -1,4 +1,5 @@
 ;;; init-bindings.el --- My own evil-collection
+;; https://github.com/emacs-evil/evil-collection
 ;; The comment after line is the function that key originally represents
 
 ;;; Macros for evil
@@ -69,7 +70,7 @@
 ;;; elfeed
 (with-eval-after-load 'elfeed
   (my-evil-jk-line-macro elfeed-search-mode-map)
-  (my-evil-jk-line-macro elfeed-show-mode-map))
+  (define-key elfeed-show-mode-map (kbd "u") 'elfeed-show-visit)) ; evil-undo
 
 ;;; PDF-mode
 (with-eval-after-load 'pdf-view
