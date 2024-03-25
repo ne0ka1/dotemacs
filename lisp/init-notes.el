@@ -64,14 +64,14 @@ regular expression.
 
 This command depends on Emacs package rg being installed to work."
   (interactive
-   (list (read-string (format "Ripgrep %ssearch for" (if current-prefix-arg "regexp " ""))
+   (list (read-string (format "Ripgrep %ssearch for: " (if current-prefix-arg "regexp " ""))
                       nil nil (zetteldeft--get-thing-at-point))
          current-prefix-arg))
     (cond
           ((require 'rg nil 'noerror)
            (rg-run search-term
                    "*"                       ;; all files
-                   (deft-directory)
+                   deft-directory
                    (not arg)                 ;; literal search?
                    nil))                       ;; no need to confirm
           (t (error "Package `rg' is not available"))))

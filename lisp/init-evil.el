@@ -18,33 +18,6 @@
 (require 'evil)
 (evil-mode)
 
-;;; Initial states.
-(dolist (states '((minibuffer-inactive-mode . emacs)
-             (calendar-mode . emacs)
-             (dired-mode . emacs)
-             (Info-mode . emacs)
-             (help-mode . emacs)
-             (woman-mode . emacs)
-             (term-mode . emacs)
-             (eshell-mode . insert)
-             (shell-mode . insert)
-	     (treemacs-mode . normal)	; for treemacs-evil
-	     (deft-mode . emacs)
-             (special-mode . emacs)
-             (grep-mode . emacs)
-             (erc-mode . emacs)
-             (elfeed-search-mode . emacs)
-             (elfeed-show-mode . motion)
-             (xref--xref-buffer-mode . emacs)
-             (compilation-mode . emacs)))
-  (evil-set-initial-state (car states) (cdr states)))
-
-;; Make sure insert state
-(add-hook 'org-capture-mode-hook #'evil-insert-state) ; Org capture
-
-(with-eval-after-load 'org-journal
-  (add-hook 'org-journal-after-entry-create-hook #'evil-insert-state)) ; New journal entry
-
 ;;; Evil normal & motion state map
 ;; Add scroll keys
 (evil-global-set-key 'motion (kbd "SPC") 'scroll-up-command)

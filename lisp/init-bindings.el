@@ -1,6 +1,37 @@
 ;;; init-bindings.el --- My own evil-collection
 ;; https://github.com/emacs-evil/evil-collection
-;; The comment after line is the function that key originally represents
+;; The comment after line is the function that key originally repr esents
+
+;;; Evil initial states
+(dolist (states '((minibuffer-inactive-mode . emacs)
+             (calendar-mode . emacs)
+             (dired-mode . emacs)
+             (Info-mode . emacs)
+             (help-mode . emacs)
+             (woman-mode . emacs)
+             (term-mode . emacs)
+             (special-mode . emacs)
+             (grep-mode . emacs)
+             (erc-mode . emacs)
+             (xref--xref-buffer-mode . emacs)
+             (compilation-mode . emacs)
+             (dashboard-mode . emacs)
+	     (deft-mode . emacs)
+             (elfeed-search-mode . emacs)
+
+             (eshell-mode . insert)
+             (shell-mode . insert)
+
+             (elfeed-show-mode . motion)
+
+	     (treemacs-mode . normal)))      ; for treemacs-evil
+  (evil-set-initial-state (car states) (cdr states)))
+
+;; Make sure insert state
+(add-hook 'org-capture-mode-hook #'evil-insert-state) ; Org capture
+
+(with-eval-after-load 'org-journal
+  (add-hook 'org-journal-after-entry-create-hook #'evil-insert-state)) ; New journal entry
 
 ;;; Macros for evil
 (defmacro my-evil-search-macro (local-map)

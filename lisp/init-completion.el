@@ -1,51 +1,47 @@
 ;;; init-completion.el --- Completion Suite
 (straight-use-package 'which-key)
-(straight-use-package 'vertico)
-(straight-use-package 'corfu)
+(straight-use-package 'vertico)         ; https://github.com/minad/vertico
+(straight-use-package 'orderless)       ; https://github.com/oantolin/orderless
+(straight-use-package 'corfu)           ; https://github.com/minad/corfu
 (straight-use-package 'corfu-terminal)
 (straight-use-package 'corfu-candidate-overlay)
 (straight-use-package 'kind-icon)
 
 ;;; which-key
 (add-hook 'emacs-startup-hook 'which-key-mode)
+(global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
 
 ;;; Minibuffer completion & narrowing
-;;; Emacs
-(setq completion-styles '(basic substring)				    ; Default substring
-      completion-category-overrides '((symbol-help (styles flex)))) ; Enhance symbol searching
 
-(setq completions-detailed t)		; Annotations
-
+;; Native annotations in favor of Marginalia, which has alignment issue
+(setq completions-detailed t)
+;; Ignore case
 (setq read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
-      completion-ignore-case t)		; Ignore Case
+      completion-ignore-case t)
 
-;;; Vertico
+;; Orderless
+(setq completion-styles '(substring orderless basic)
+      orderless-component-separator 'orderless-escapable-split-on-space)
+
+;; Vertico
 (require 'vertico)
-
 (setq vertico-count 7	  ; Maximal number of candidates to show
       vertico-cycle t	  ; Enable cycling for `vertico-next/previous'
       vertico-count-format nil)	    ; No prefix with number of entries
-
 (define-key vertico-map (kbd "C-j") 'vertico-next)
 (define-key vertico-map (kbd "C-k") 'vertico-previous)
 (define-key vertico-map (kbd "C-<return>") 'vertico-exit-input)
-
 (vertico-mode)
 
-;; Vertico extensions
+;; Vercito Multiform
 (add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
-
 (require 'vertico-multiform)
 (require 'vertico-flat)
-
 (setq vertico-multiform-commands
         '((execute-extended-command flat)))
-
 (setq vertico-multiform-categories
-      '((buffer flat)
-	(file flat)))
-
+      '((file flat)))
 (vertico-multiform-mode)
 
 ;; In-region completion

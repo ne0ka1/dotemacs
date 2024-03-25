@@ -1,7 +1,4 @@
 ;;; init-org-gtd.el --- Org mode GTD implementation and Expansion
-(straight-use-package 'org-edna)
-;; https://www.nongnu.org/org-edna-el/ and Info org-edna
-
 ;;; Items
 ;; Todos
 (setq org-todo-keywords

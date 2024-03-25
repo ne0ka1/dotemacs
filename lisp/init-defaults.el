@@ -40,6 +40,9 @@
 ;; Keep the directory clean (Used no-littering)
 (setq create-lockfiles nil)
 
+;; Auto save buffer (important for org gtd files)
+(auto-save-visited-mode 1)
+
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
 

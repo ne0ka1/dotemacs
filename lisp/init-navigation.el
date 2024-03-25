@@ -1,7 +1,8 @@
 ;;; init-navigation.el --- Convenient navigation
 
 ;; Navigation inside and between buffer
-
+(straight-use-package 'rg)
+(straight-use-package 'consult)         ; https://github.com/minad/consult
 (straight-use-package 'vimish-fold)
 (straight-use-package 'evil-vimish-fold)
 (straight-use-package 'iflipb)
@@ -19,8 +20,16 @@
              (recentf-expand-file-name no-littering-var-directory))
 (add-to-list 'recentf-exclude
              (recentf-expand-file-name no-littering-etc-directory))
-(global-set-key (kbd "C-x C-r") 'recentf) ; find-file-read-only
 (setq recentf-max-saved-items 200)
+
+;;; Consult
+(global-set-key (kbd "C-c m") 'consult-imenu)	   ; i"m"enu
+(global-set-key (kbd "C-h s") 'consult-info)       ; 'describe-syntax
+(global-set-key [remap Info-search] 'consult-info) ; key "s" in Info-mode
+(global-set-key (kbd "C-x b") 'consult-buffer)     ; 'switch-buffer
+(global-set-key (kbd "C-s") 'consult-line)         ; 'i-search
+(global-set-key (kbd "M-s") 'consult-ripgrep)      ; isearch related prefix key
+(global-set-key (kbd "M-g g") 'consult-goto-line)  ; 'goto-line
 
 ;;; evil-vimish-fold
 (setq evil-vimish-fold-target-modes '(prog-mode conf-mode text-mode))
