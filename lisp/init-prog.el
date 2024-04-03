@@ -1,11 +1,16 @@
 ;;; init-prog.el --- IDE experience for programming
 
+(straight-use-package 'devdocs)
 (straight-use-package 'magit)
 (straight-use-package 'evil-magit)      ; https://github.com/emacs-evil/evil-magit
 (straight-use-package 'treemacs)
 (straight-use-package 'treemacs-evil)
-(straight-use-package 'treemacs-projectile)
-(straight-use-package 'projectile)
+
+;;; Devdocs
+(global-set-key (kbd "C-h d") 'devdocs-lookup) ; 'apropos-documentation
+(setq shr-use-fonts nil)                       ; devdocs use shr to render texts
+(add-hook 'c-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("c"))))
 
 ;;; Magit
 (require 'evil-magit)
@@ -27,13 +32,5 @@
   (setq treemacs-width 25
 	treemacs-follow-after-init t)
 )
-
-;;; Projectile
-;; https://docs.projectile.mx/projectile/index.html
-(require 'projectile)
-(add-hook 'emacs-startup-hook 'projectile-mode)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;; dispatcher for grep, rg, ag. always use rg.
-(define-key projectile-mode-map (kbd "C-c p s") 'projectile-ripgrep)
 
 (provide 'init-prog)

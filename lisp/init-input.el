@@ -1,5 +1,5 @@
 ;;; init-input.el --- Input for Chinese Language
-(straight-use-package 'rime)
+(straight-use-package 'rime) ;; https://github.com/DogLooksGood/emacs-rime
 (straight-use-package 'sis)
 (straight-use-package 'opencc)
 

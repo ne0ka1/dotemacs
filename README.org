@@ -2,7 +2,18 @@
 
 My personal Emacs configuration.
 
-Features:
+* Features
 - Evil keybindings, but lighter.
 - Minimal, elegant interface. 
 - Modular. Codes are splitted into ~init-***~ modules.
+
+* Dependency
+** Fonts
+macOS:
+~brew tap epk/epk~
+~brew install font-sf-mono-nerd-font~
+
+iA writer fonts is available in https://github.com/iaolo/iA-Fonts.
+
+arch linux:
+~SFMono Nerd Font~, ~Libertinus Sans~, ~Apple Color Emoji~ and ~iA Writer Duospace~ are available either in arch repository or as AUR.

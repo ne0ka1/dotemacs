@@ -79,7 +79,7 @@
 ;;; Agenda
 ;; General
 ;; Agenda files
-;; (setq org-agenda-files '("~/org/school.org" "~/org/personal.org" "~/org/inbox.org"))
+(setq org-agenda-files '("~/org/"))
 
 ;; Display settings.
 (setq org-agenda-window-setup 'current-window

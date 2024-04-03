@@ -33,6 +33,9 @@
 (cond
  (sys/winp
   (set-face-attribute 'default nil :family "Consolas" :height 140))
+ (sys/macp
+  (set-face-attribute 'default nil :family "SFMono Nerd Font" :height 170)
+  (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend))
  (sys/linuxp
   (set-face-attribute 'default nil :family "SFMono Nerd Font Mono" :height 130)
   (set-face-attribute 'variable-pitch nil :family "Libertinus Sans" :height 140)
@@ -55,7 +58,7 @@
 (dashboard-setup-startup-hook)
 (setq dashboard-startup-banner 2
       dashboard-projects-backend 'projectile
-      dashboard-items '((agenda . 5)(recents . 5)))
+      dashboard-items '((recents . 5)))
 (setq dashboard-agenda-tags-format nil
       dashboard-agenda-sort-strategy '(time-up)
       dashboard-agenda-time-string-format "%m-%d")
@@ -90,6 +93,7 @@
 ;;; awesome-tray
 (setq awesome-tray-active-modules
       '("anzu" "clock")
+      awesome-tray-date-format "%-H:%-M"
 ;; have hidden the mode line in early-init.el by setting mode-line-format.
 ;; any packages that mess with the mode-line can re-enable the mode-line.
 ;; disable them in their own settings, like anzu.

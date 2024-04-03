@@ -24,13 +24,13 @@
 (require 'init-navigation)
 (require 'init-completion)
 (require 'init-editing)
-(require 'init-input)
+;; (require 'init-input)
 (require 'init-interface)
 
 ;;; extra
 (require 'init-prog)
 (require 'init-notes)
-(require 'init-utility)
+;; (require 'init-utility)
 
 ;;; org
 (require 'init-org-base)

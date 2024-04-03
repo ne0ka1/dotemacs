@@ -21,7 +21,9 @@
     (interactive)
     (setq line-spacing 5)
     (olivetti-mode)
-    (setq buffer-face-mode-face '(:family "iA Writer Duospace" :height 130))
+    (cond
+     (sys/macp (setq buffer-face-mode-face '(:family "iA Writer Duo S" :height 170)))
+    (sys/linuxp (setq buffer-face-mode-face '(:family "iA Writer Duospace" :height 130))))
     (buffer-face-mode))
 
 (add-hook 'org-mode-hook 'my-writing-mode)
