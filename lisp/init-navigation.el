@@ -6,7 +6,6 @@
 (straight-use-package 'vimish-fold)
 (straight-use-package 'evil-vimish-fold)
 (straight-use-package 'iflipb)
-(straight-use-package 'ibuffer-projectile)
 (straight-use-package                   ; https://www.emacswiki.org/emacs/OpenWith
   '(open-with :type git :host github :repo "jpkotta/openwith"))
 
@@ -44,18 +43,6 @@
 ;;; Buffer Management
 ;; Manage buffer using iBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-(require 'ibuffer-projectile)
-(setq ibuffer-projectile-prefix "")
-
-(setq ibuffer-show-empty-filter-groups nil ;; Do not show empty groups
-      ibuffer-sorting-mode 'filename/process)
-
-(add-hook 'ibuffer-hook
-     (lambda ()
-       (ibuffer-projectile-set-filter-groups)
-       (unless (eq ibuffer-sorting-mode 'alphabetic)
-         (ibuffer-do-sort-by-alphabetic))))
 
 ;;; Window Management
 ;; Assumming we use evil windows navigation

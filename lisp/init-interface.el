@@ -62,6 +62,7 @@
 (setq dashboard-agenda-tags-format nil
       dashboard-agenda-sort-strategy '(time-up)
       dashboard-agenda-time-string-format "%m-%d")
+(setq dashboard-footer-messages '("If today were the last day of my life, would I want to do what I am about to do today?" "Your time is limited, so don't waste it living someone else's life."))
 (define-key dashboard-mode-map (kbd "SPC") 'dashboard-return)
 
 ;;; anzu

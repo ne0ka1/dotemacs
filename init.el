@@ -24,7 +24,7 @@
 (require 'init-navigation)
 (require 'init-completion)
 (require 'init-editing)
-;; (require 'init-input)
+(require 'init-input)
 (require 'init-interface)
 
 ;;; extra
