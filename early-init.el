@@ -14,6 +14,9 @@
 ;; to skip the mtime checks on every *.elc file.
 (setq load-prefer-newer noninteractive)
 
+;; Supress native compilation warnings
+(setq native-comp-async-report-warnings-errors 'silent)
+
 ;; Inhibit resizing frame
 (setq frame-inhibit-implied-resize t)
 

@@ -7,7 +7,7 @@
 (straight-use-package 'evil-vimish-fold)
 (straight-use-package 'iflipb)
 (straight-use-package                   ; https://www.emacswiki.org/emacs/OpenWith
-  '(open-with :type git :host github :repo "jpkotta/openwith"))
+  '(open-with :type git :host github :repo "jpkotta/openwith")) ; https://github.com/jpkotta/openwith
 
 ;;; open url/file
 (global-set-key (kbd "C-c C-o") 'find-file-at-point)
@@ -57,7 +57,6 @@
 
 ;;; Open-with
 (when sys/linuxp
-  (progn
   (require 'openwith)
   (setq openwith-associations
         (list
@@ -74,6 +73,6 @@
          (list (openwith-make-extension-regexp
                 '("epub"))
                "foliate" '(file))))
-  (openwith-mode 1)))
+  (openwith-mode 1))
 
 (provide 'init-navigation)

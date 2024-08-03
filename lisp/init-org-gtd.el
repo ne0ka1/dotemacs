@@ -52,7 +52,27 @@
      "* TODO %?\n%U\n\n  %i")
     ("l" "Link" entry (file "~/org/inbox.org")
      "* %?\n%U\n\n  %i\n  %a")
+    ("j" "Journal" entry (file+function "~/org/journal.org" (lambda ()(format-time-string "%Y-%m-%d %A")))
+     "** %<%R> %?")
 ))
+
+;;; Journal
+;; Run this helper function to populate the journal file for a month
+(require 'calendar)
+
+(defun my-insert-journal-entry ()
+  "Insert lines like '* YYYY-MM-DD Day' for the actual number of days in the current month."
+  (interactive)
+  (let* ((current-time (current-time))
+         (decoded-time (decode-time current-time))
+         (year (nth 5 decoded-time))
+         (month (nth 4 decoded-time))
+         (days-in-month (calendar-last-day-of-month month year)))
+    (dotimes (day days-in-month)
+      (let ((date (encode-time 0 0 0 (1+ day) month year)))
+        (insert (format "* %s %s\n"
+                        (format-time-string "%Y-%m-%d" date)
+                        (format-time-string "%A" date)))))))
 
 ;;; Refile
 (setq org-refile-targets '((nil :maxlevel . 9) ; Headings in the current buffer, up to level 9

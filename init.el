@@ -30,13 +30,12 @@
 ;;; extra
 (require 'init-prog)
 (require 'init-notes)
-;; (require 'init-utility)
+(require 'init-utility)
 
 ;;; org
 (require 'init-org-base)
 (require 'init-org-babel)
 (require 'init-org-gtd)
-(require 'init-org-journal)
 
 ;;; lang
 (require 'init-c)

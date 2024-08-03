@@ -1,16 +1,13 @@
 ;;; init-utility.el --- Utilities of Emacs
 
+(when sys/linuxp
 (straight-use-package 'goldendict)
-(straight-use-package 'activity-watch-mode)
 (straight-use-package 'elfeed)          ; https://github.com/skeeto/elfeed
 (straight-use-package 'elfeed-org)     ; https://github.com/remyhonig/elfeed-org
 
 ;;; Goldendict
 (require 'goldendict)
 (global-set-key (kbd "C-h w") 'goldendict-dwim) ; where-is
-
-;;; Activity Watch
-(add-hook 'emacs-startup-hook 'global-activity-watch-mode)
 
 ;;; elfeed
 (elfeed-org)
@@ -31,5 +28,10 @@
       (cl-loop for entry in entries
 	       do (my-elfeed-db-remove-entry (elfeed-entry-id entry)))))
   (elfeed-search-update--force))
+)
+
+(when sys/macp
+  (straight-use-package 'nov)           ; https://depp.brause.cc/nov.el/
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 (provide 'init-utility)

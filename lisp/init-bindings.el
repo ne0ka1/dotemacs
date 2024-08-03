@@ -18,6 +18,7 @@
              (dashboard-mode . emacs)
 	     (deft-mode . emacs)
              (elfeed-search-mode . emacs)
+             (osx-dictionary-mode . emacs)
 
              (eshell-mode . insert)
              (shell-mode . insert)
@@ -116,5 +117,9 @@
 (with-eval-after-load 'rg
   (define-key rg-mode-map (kbd "j") 'next-error-no-select)
   (define-key rg-mode-map (kbd "k") 'previous-error-no-select))
+
+;;; epub-mode
+(with-eval-after-load 'nov
+  (my-evil-jk-line-macro nov-mode-map))
 
 (provide 'init-bindings)

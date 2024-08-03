@@ -3,7 +3,10 @@
 ;;; Modifiers
 (when sys/macp
  ;; make Mac keyboard's command key as control key
-  (setq ns-command-modifier 'control))
+  (setq ns-control-modifier 'super)
+  (setq ns-command-modifier 'control)
+  ;; Mac default keybinding to toggle fullscreen
+  (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen))
 
 ;;; Minimal interface
 ;; Note that frame has been handled in early-init.el

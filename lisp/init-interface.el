@@ -35,6 +35,7 @@
   (set-face-attribute 'default nil :family "Consolas" :height 140))
  (sys/macp
   (set-face-attribute 'default nil :family "SFMono Nerd Font" :height 170)
+  (set-face-attribute 'variable-pitch nil :family "Palatino" :height 170)
   (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend))
  (sys/linuxp
   (set-face-attribute 'default nil :family "SFMono Nerd Font Mono" :height 130)
@@ -43,16 +44,22 @@
   ;; Emacs recognize Apple Emoji (font already installed)
   (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend)))
 
+;; shortcut for change font size
+(defun my-change-font-size (new-size)
+  "Change the font size to the given value"
+  (interactive "nNew font size: ")
+  (set-face-attribute 'default nil :family "SFMono Nerd Font" :height (* 10 new-size)))
+(global-set-key (kbd "C-x -") #'my-change-font-size)
+
 ;;; Emojify
 (when sys/linuxp
-  (progn
     (straight-use-package 'ht)          ; emojify's dependency
     (straight-use-package 'emacs-emojify)   ; https://github.com/iqbalansari/emacs-emojify
     (with-eval-after-load 'emojify
       (remove-hook 'emojify-inhibit-functions #'emojify-in-org-tags-p)
       (setq emojify-display-style 'unicode)
       (emojify-set-emoji-styles '(unicode github)))  ; Disable ascii
-    (add-hook 'after-init-hook #'global-emojify-mode)))
+    (add-hook 'after-init-hook #'global-emojify-mode))
 
 ;;; Dashboard
 (dashboard-setup-startup-hook)
