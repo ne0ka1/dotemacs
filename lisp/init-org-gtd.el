@@ -10,25 +10,12 @@
 (setq org-tags-column 0
       org-auto-align-tags t
       org-fast-tag-selection-single-key t
-      ;; place @ before tags which don't have emoji display, to avoid clash
-      ;; they are placed before context emojis, because org sort according to last tag
       org-tag-alist '((:startgroup)
-                      ("@easy" . ?e)
-                      ("@medium" . ?m)
-                      ("@difficult" . ?d)
-                      ("@relax" . ?r)
-                      (:endgroup)
-                      (:startgroup)
-                      ("cloud" . ?c)              ; :cloud: creative
-                      ("fire" . ?f)               ; :fire: urgent
-                      ("tv" . ?t)                 ; :tv: watch video
-                      ("books" . ?b)              ; :books: read book
-                      ("writing_hand" . ?w)       ; :writing_hand: write
-                      ("house" . ?h)              ; :house: house
-                      ("spy" . ?s)                ; :spy: social
-                      ("athletic_shoe" . ?a)      ; :athletic_shoe: errands
-                      (:endgroup))
-      )
+                      ("easy" . ?e)
+                      ("medium" . ?m)
+                      ("hard" . ?h)
+                      ("relax" . ?r)
+                      (:endgroup)))
 
 ;; Logs
 (setq org-log-repeat nil
@@ -37,22 +24,24 @@
 
 ;; Projects
 ;; if it contains any NEXT keyword item, the project is marked unstuck
+;; headline in bracket is also marked unstuck
 (setq org-stuck-projects
-      '("+LEVEL=1-CATEGORY=\"inbox\"-CATEGORY=\"calendar\"/-DONE-CNCL-WAIT"
+      '("+LEVEL=1-CATEGORY=\"inbox\"-CATEGORY=\"journal\"/-DONE-CNCL-WAIT"
         ("NEXT")
         nil "\[[a-z]+\]"))
 
-;;; Dependencies edna
-(setq org-edna-use-inheritance t)
-;; (org-edna-mode)
-
 ;;; Capture
+(defun my-journal-capture-target ()
+  (find-file "~/org/journal.org")
+  (let ((date (format-time-string "%Y-%m-%d %A")))
+    (goto-char (org-find-exact-headline-in-buffer date nil t))))
+
 (setq org-capture-templates
  '(("t" "Todo" entry (file "~/org/inbox.org")
      "* TODO %?\n%U\n\n  %i")
     ("l" "Link" entry (file "~/org/inbox.org")
      "* %?\n%U\n\n  %i\n  %a")
-    ("j" "Journal" entry (file+function "~/org/journal.org" (lambda ()(format-time-string "%Y-%m-%d %A")))
+    ("j" "Journal" entry (function my-journal-capture-target)
      "** %<%R> %?")
 ))
 
@@ -97,27 +86,16 @@
       org-clock-mode-line-total 'current) ; Time displayed in the mode line, current instance
 
 ;;; Agenda
-;; General
 ;; Agenda files
 (setq org-agenda-files '("~/org/"))
 
 ;; Display settings.
 (setq org-agenda-window-setup 'current-window
       org-agenda-restore-windows-after-quit t
-      ;; remove context tags but not energy tags
-      org-agenda-remove-tags nil
-      org-agenda-hide-tags-regexp "^[^@]+"
       ;; emojis cannot align properly so give up align altogether
       org-agenda-tags-column 0
       org-agenda-sort-noeffort-is-high nil)
 
-;; add tag in todo types
-(setq org-agenda-prefix-format
-'((agenda . " %i %-12:c%?-12t% s")
- (todo . " %i %-12:c\:%T\: ")
- (tags . " %i %-12:c")
- (search . " %i %-12:c"))
-)
 
 ;;; Daily Agenda
 ;; Daily/weekly agenda items
@@ -151,13 +129,13 @@
 (setq org-agenda-custom-commands
       '(("d" "Dashboard"
          ((agenda ""
-                  ((org-agenda-prefix-format " %i %-12:c%?-12t% s\:%T\: ")
+                  ((org-agenda-prefix-format " %i %-12:c%?-12t% s ")
                    (org-agenda-skip-function
                     '(org-agenda-skip-entry-if 'deadline))))
           (tags-todo "PRIORITY=\"A\"|TODO=\"NEXT\"-PRIORITY=\"C\""
                 ((org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'timestamp))
-                 (org-agenda-prefix-format " %i %-12:c\:%T\: ")
+                 (org-agenda-prefix-format " %i %-12:c ")
                  (org-agenda-overriding-header "\nTasks\n")))
           (agenda nil
                   ((org-agenda-entry-types '(:deadline))
@@ -176,57 +154,21 @@
           (todo "WAIT" ((org-agenda-prefix-format " %i %-12:c")
                       (org-agenda-overriding-header "\nWaiting\n"))))) ; No tag
 
-        ("c" "Context"
-           ((tags-todo "cloud/-WAIT"
-                 ((org-agenda-overriding-header " :cloud: Research/Creative \n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "fire/-WAIT"
-                 ((org-agenda-overriding-header "\n :fire: Urgent\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "house/-WAIT"
-                 ((org-agenda-overriding-header "\n :house: Home\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "books/-WAIT"
-                 ((org-agenda-overriding-header "\n :books: Reading")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "tv/-WAIT"
-                 ((org-agenda-overriding-header "\n :tv: Watching\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "keyboard/-WAIT"
-                 ((org-agenda-overriding-header "\n :writing_hand: Writing\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "spy/-WAIT"
-                 ((org-agenda-overriding-header "\n :spy: Social\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           (tags-todo "athletic_shoe/-WAIT"
-                 ((org-agenda-overriding-header "\n :athletic_shoe: Errands\n")
-                  (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'timestamp))))
-           ;; Routines are the last because they typically are scheduled
-           ))
-
         ("E" "Energy"
          ;; display context tags in prefix
-         ((tags-todo "@easy/-WAIT"
+         ((tags-todo "easy/-WAIT"
                      ((org-agenda-overriding-header " 😎 Easy\n")
                       (org-agenda-remove-tags t)
                       (org-agenda-prefix-format " %i %-12:c\:%T\: ")))
-          (tags-todo "@medium/-WAIT"
+          (tags-todo "medium/-WAIT"
                      ((org-agenda-overriding-header "\n 🤔 Medium\n")
                       (org-agenda-remove-tags t)
                       (org-agenda-prefix-format " %i %-12:c\:%T\: ")))
-          (tags-todo "@difficult/-WAIT"
+          (tags-todo "hard/-WAIT"
                      ((org-agenda-overriding-header "\n 🤯 Difficult\n")
                       (org-agenda-remove-tags t)
                       (org-agenda-prefix-format " %i %-12:c\:%T\: ")))
-           (tags-todo "@relax/-WAIT"
+           (tags-todo "relax/-WAIT"
                      ((org-agenda-overriding-header "\n 😌 Relax\n")
                       (org-agenda-remove-tags t)
                       (org-agenda-prefix-format " %i %-12:c\:%T\: ")))

@@ -51,21 +51,11 @@
   (set-face-attribute 'default nil :family "SFMono Nerd Font" :height (* 10 new-size)))
 (global-set-key (kbd "C-x -") #'my-change-font-size)
 
-;;; Emojify
-(when sys/linuxp
-    (straight-use-package 'ht)          ; emojify's dependency
-    (straight-use-package 'emacs-emojify)   ; https://github.com/iqbalansari/emacs-emojify
-    (with-eval-after-load 'emojify
-      (remove-hook 'emojify-inhibit-functions #'emojify-in-org-tags-p)
-      (setq emojify-display-style 'unicode)
-      (emojify-set-emoji-styles '(unicode github)))  ; Disable ascii
-    (add-hook 'after-init-hook #'global-emojify-mode))
-
 ;;; Dashboard
 (dashboard-setup-startup-hook)
 (setq dashboard-startup-banner 2
       dashboard-projects-backend 'projectile
-      dashboard-items '((recents . 5)))
+      dashboard-items '((recents . 5)(agenda . 5)))
 (setq dashboard-agenda-tags-format nil
       dashboard-agenda-sort-strategy '(time-up)
       dashboard-agenda-time-string-format "%m-%d")
@@ -102,7 +92,7 @@
 (setq awesome-tray-active-modules
       '("anzu" "clock")
       awesome-tray-date-format "%-H:%-M"
-;; have hidden the mode line in early-init.el by setting mode-line-format.
+;; already hide the mode line in early-init.el by setting mode-line-format.
 ;; any packages that mess with the mode-line can re-enable the mode-line.
 ;; disable them in their own settings, like anzu.
       awesome-tray-hide-mode-line nil)
