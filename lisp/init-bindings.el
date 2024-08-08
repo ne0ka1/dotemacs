@@ -18,7 +18,6 @@
              (dashboard-mode . emacs)
 	     (deft-mode . emacs)
              (elfeed-search-mode . emacs)
-             (osx-dictionary-mode . emacs)
 
              (eshell-mode . insert)
              (shell-mode . insert)

@@ -20,10 +20,10 @@ arch linux:
 ~SFMono Nerd Font~, ~Libertinus Sans~, ~Apple Color Emoji~ and ~iA Writer Duospace~ are available either in arch repository or as AUR.
 
 ** Input methods
-Refer https://github.com/laishulu/emacs-smart-input-source and https://github.com/DogLooksGood/emacs-rime for instructions on installation.
-
+Refer to [[https://github.com/laishulu/emacs-smart-input-source][emacs smart input source]] and [[https://github.com/DogLooksGood/emacs-rime][emacs-rime]] for instructions on installation.
 Note that you need to update the value of ~rime-emacs-module-header-root~ after each upgrade of emacs.
 
 ** External Program
-~rg~ program should be installed.
-To use ~goldendict~ in linux, the goldendict program should be installed.
+~rg~ package requires ~rg~ program.
+~emacs-opencc~ package requires ~opencc~ program.
+~goldendict~ package (in linux) requires ~goldendict~ program.

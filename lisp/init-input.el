@@ -1,7 +1,7 @@
 ;;; init-input.el --- Input for Chinese Language
-(straight-use-package 'rime) ;; https://github.com/DogLooksGood/emacs-rime
+(straight-use-package 'rime)            ; https://github.com/DogLooksGood/emacs-rime
 (straight-use-package 'sis)             ; https://github.com/laishulu/emacs-smart-input-source
-(straight-use-package 'opencc)
+(straight-use-package 'opencc)          ; https://github.com/xuchunyang/emacs-opencc
 
 ;;; Rime
 (require 'rime)
@@ -21,7 +21,7 @@
 	rime-predicate-tex-math-or-command-p)
       rime-translate-keybindings '("C-h" "C-j" "C-k" "C-l" "C-g" ";" "'" "C-`"))
 
-;; compatible with 
+;; compatible with modus-operandi
 (set-face-attribute 'rime-default-face nil :foreground "#000000" :background "#ffffff")
 
 ;;; Smart Input Source

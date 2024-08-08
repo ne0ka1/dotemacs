@@ -1,33 +1,14 @@
 ;;; init-interface.el --- Minimal and elegant interface for Emacs
 
-;; Theme, Font, Dashboard, Modeline
-(straight-use-package 'solarized-theme) ;
-(straight-use-package 'dashboard)
-(straight-use-package 'anzu)
-(straight-use-package 'evil-anzu)
-(straight-use-package 'nano-modeline)
-(straight-use-package
+;; Font, Theme, Dashboard, Modeline
+; https://github.com/purcell/color-theme-sanityinc-tomorrow
+(straight-use-package 'color-theme-sanityinc-tomorrow)
+(straight-use-package 'dashboard)       ; https://github.com/emacs-dashboard/emacs-dashboard
+(straight-use-package 'anzu)            ; https://github.com/emacsorphanage/anzu
+(straight-use-package 'evil-anzu)       ; https://github.com/emacsorphanage/evil-anzu
+(straight-use-package 'nano-modeline)   ; https://github.com/rougier/nano-modeline
+(straight-use-package                   ; https://github.com/manateelazycat/awesome-tray
  '(awesome-tray :type git :host github :repo "manateelazycat/awesome-tray"))
-
-;;; Theme
-(setq modus-themes-headings
-      (quote ((0 . (1.3))		; Org Title bold
-	      (1 . (regular 1.3))
-	      (2 . (regular 1.2))
-	      (3 . (regular 1.15))
-	      (4 . (regular 1.1))
-	      (5 . (regular 1.05)))))
-
-(setq solarized-use-variable-pitch nil
-      solarized-scale-markdown-headlines t)
-
-(load-theme 'modus-operandi t)
-
-
-;; for solarized dark
-;; (with-eval-after-load 'rime
-;;    (set-face-attribute 'rime-default-face nil :foreground "#839496" :background "#002b36")
-;;    (set-face-attribute 'rime-highlight-candidate-face nil :weight 'normal))
 
 ;;; Font
 (cond
@@ -47,15 +28,17 @@
 ;; shortcut for change font size
 (defun my-change-font-size (new-size)
   "Change the font size to the given value"
-  (interactive "nNew font size: ")
+  (interactive "nNew font size (default 17): ")
   (set-face-attribute 'default nil :family "SFMono Nerd Font" :height (* 10 new-size)))
 (global-set-key (kbd "C-x -") #'my-change-font-size)
+
+;;; Theme
+(load-theme 'sanityinc-tomorrow-night t)
 
 ;;; Dashboard
 (dashboard-setup-startup-hook)
 (setq dashboard-startup-banner 2
-      dashboard-projects-backend 'projectile
-      dashboard-items '((recents . 5)(agenda . 5)))
+      dashboard-items '((agenda . 5)(recents . 5)(projects . 5)))
 (setq dashboard-agenda-tags-format nil
       dashboard-agenda-sort-strategy '(time-up)
       dashboard-agenda-time-string-format "%m-%d")
