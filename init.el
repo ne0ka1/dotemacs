@@ -29,6 +29,7 @@
 
 ;;; extra
 (require 'init-prog)
+(require 'init-dired)
 (require 'init-notes)
 (require 'init-utility)
 
