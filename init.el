@@ -23,13 +23,14 @@
 ;;; core
 (require 'init-navigation)
 (require 'init-completion)
-(require 'init-editing)
+(require 'init-edit)
 (require 'init-input)
 (require 'init-interface)
 
 ;;; extra
 (require 'init-prog)
 (require 'init-dired)
+(require 'init-shell)
 (require 'init-notes)
 (require 'init-utility)
 

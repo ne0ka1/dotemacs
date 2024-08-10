@@ -31,7 +31,7 @@
 (setq evil-magit-use-y-for-yank nil)
 
 ;;; Treemacs
-(global-set-key (kbd "M-o") 'treemacs-select-window)
+(global-set-key (kbd "M-0") 'treemacs-select-window)
 (global-set-key (kbd "C-x t t") 'treemacs)
 (global-set-key (kbd "C-x t b") 'treemacs-bookmark)
 (global-set-key (kbd "C-x t f") 'treemacs-find-file)
