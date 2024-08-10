@@ -1,15 +1,13 @@
 ;;; init-completion.el --- Completion Suite
-(straight-use-package 'which-key)
+
+;; completion in minibuffer, in region
 (straight-use-package 'vertico)         ; https://github.com/minad/vertico
 (straight-use-package 'orderless)       ; https://github.com/oantolin/orderless
 (straight-use-package 'corfu)           ; https://github.com/minad/corfu
 (straight-use-package 'corfu-terminal)
 (straight-use-package 'corfu-candidate-overlay)
-(straight-use-package 'kind-icon)
-
-;;; which-key
-(add-hook 'emacs-startup-hook 'which-key-mode)
-(global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
+(straight-use-package 'nerd-icons)	; https://github.com/rainstormstudio/nerd-icons.el
+(straight-use-package 'nerd-icons-corfu); https://github.com/LuigiPiucco/nerd-icons-corfu
 
 ;;; Minibuffer completion & narrowing
 
@@ -34,8 +32,8 @@
 (define-key vertico-map (kbd "C-<return>") 'vertico-exit-input)
 (vertico-mode)
 
-;; Vercito Multiform
-(add-to-list 'load-path (expand-file-name "straight/build/vertico/extensions" straight-base-dir))
+;; Vertico Multiform
+(add-to-list 'load-path (expand-file-name "straight/repos/vertico/extensions" straight-base-dir))
 (require 'vertico-multiform)
 (require 'vertico-flat)
 (setq vertico-multiform-commands
@@ -67,7 +65,7 @@
 (global-corfu-mode)
 
 ;; corfu extensions
-(add-to-list 'load-path (expand-file-name "straight/build/corfu/extensions" straight-base-dir))
+(add-to-list 'load-path (expand-file-name "straight/repos/corfu/extensions" straight-base-dir))
 
 (require 'corfu-popupinfo)
 (corfu-popupinfo-mode)
@@ -76,8 +74,14 @@
 (require 'corfu-candidate-overlay)
 (corfu-candidate-overlay-mode)
 
-;; kind-icon
-(setq kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+;; nerd-icon
+(require 'nerd-icons)
+(cond
+ (sys/macp
+  (setq nerd-icons-font-family "SFMono Nerd Font"))
+ (sys/linuxp
+  (setq nerd-icons-font-family "SFMono Nerd Font Mono")))
+
+(add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
 
 (provide 'init-completion)
