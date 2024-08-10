@@ -8,7 +8,7 @@
 (cond
  (sys/macp 
   (setq rime-librime-root "~/.emacs.d/var/librime/dist"
-        rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.4/include"))
+        rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@30/30.0.60/include"))
  (sys/linuxp
   (setq rime-librime-root "/usr/")))
 

@@ -40,6 +40,10 @@
 (cond
  (sys/winp
   (set-face-attribute 'default nil :height 140))
+ (sys/macp
+  (set-face-attribute 'default nil :family "SFMono Nerd Font" :height 170)
+  (set-face-attribute 'variable-pitch nil :family "Palatino" :height 170)
+  (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend))
  (sys/linuxp
   (set-face-attribute 'default nil :family "SFMono Nerd Font Mono" :height 130)
   (set-face-attribute 'variable-pitch nil :family "EB Garamond" :height 155)

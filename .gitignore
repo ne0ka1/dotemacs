@@ -1,5 +1,6 @@
+*.elc
+.DS_Store
 straight/
-etc/
 var/
 auto-save-list/
 eln-cache/

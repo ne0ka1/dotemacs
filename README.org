@@ -7,6 +7,7 @@ My personal Emacs configuration.
 - Minimal, elegant interface. 
 - Modular. Codes are splitted into ~init-***~ modules.
 
+Support Emacs version 30.0 plus.
 * Dependency
 ** Fonts
 On macOS:
@@ -21,9 +22,12 @@ arch linux:
 
 ** Input methods
 Refer to [[https://github.com/laishulu/emacs-smart-input-source][emacs smart input source]] and [[https://github.com/DogLooksGood/emacs-rime][emacs-rime]] for instructions on installation.
-Note that you need to update the value of ~rime-emacs-module-header-root~ after each upgrade of emacs.
+Note that you need to update the value of ~rime-emacs-module-header-root~ after each upgrade of Emacs.
 
 ** External Program
 ~rg~ package requires ~rg~ program.
 ~emacs-opencc~ package requires ~opencc~ program.
 ~goldendict~ package (in linux) requires ~goldendict~ program.
+
+On mac, ~gls~ program is preferred for Dired.
+This is usually installed by ~emacs-plus~ package.
