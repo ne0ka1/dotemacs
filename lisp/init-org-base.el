@@ -11,6 +11,8 @@
 
 ;; Free keys used by iflipb
 (define-key org-mode-map (kbd "C-,") nil) ; org-cycle-agenda-files
+;; Free keys used in flyspell
+(define-key org-mode-map (kbd "C-'") nil) ; org-cycle-agenda-files
 
 ;; Applications for opening 'file:path' items in a document
 (setq org-file-apps '((auto-mode .emacs)

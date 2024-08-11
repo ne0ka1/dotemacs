@@ -7,7 +7,7 @@
 (global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
 (global-set-key (kbd "C-h C-m") 'which-key-show-major-mode) ; 'view-order-manuals
 
-;;; Nice add-ons
+;;; Configs
 ;; Visual Line Mode
 (global-visual-line-mode 1)
 
@@ -30,14 +30,34 @@
 ;; open url/file
 (global-set-key (kbd "C-c C-o") 'find-file-at-point)
 
+;;; Keybindings
+(global-set-key (kbd "M-j") #'evil-join)
+
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+(global-set-key (kbd "C-x C-r") #'rename-current-buffer-file) ; 'find-file-read-only
+
 ;;; Check spelling
 (add-hook 'text-mode-hook #'flyspell-mode)
 (with-eval-after-load 'flyspell
   ;; conflict with iflipb
   (define-key flyspell-mode-map (kbd "C-.") nil) ;flyspell-auto-correct-word
   (define-key flyspell-mode-map (kbd "C-,") nil) ;flyspell-goto-next-error
-  ;; conflict with avy
-  (define-key flyspell-mode-map (kbd "C-;") nil) ;flyspell-auto-correct-previous-word
 )
 
 ;;; Tempel

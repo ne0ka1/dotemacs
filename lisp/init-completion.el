@@ -33,7 +33,6 @@
 (vertico-mode)
 
 ;; Vertico Multiform
-(add-to-list 'load-path (expand-file-name "straight/repos/vertico/extensions" straight-base-dir))
 (require 'vertico-multiform)
 (require 'vertico-flat)
 (setq vertico-multiform-commands
@@ -65,8 +64,6 @@
 (global-corfu-mode)
 
 ;; corfu extensions
-(add-to-list 'load-path (expand-file-name "straight/repos/corfu/extensions" straight-base-dir))
-
 (require 'corfu-popupinfo)
 (corfu-popupinfo-mode)
 (setq corfu-popupinfo-delay 1.0)

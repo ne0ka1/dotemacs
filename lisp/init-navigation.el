@@ -8,8 +8,8 @@
 (straight-use-package 'popper)   ; https://github.com/karthink/popper
 
 ;;; avy
-(global-set-key (kbd "C-;") 'avy-goto-char-2)
 (global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
 
 ;;; recentf
 (add-hook 'emacs-startup-hook 'recentf-mode)
@@ -32,11 +32,16 @@
 (global-set-key (kbd "M-g g") 'consult-goto-line)  ; 'goto-line
 
 ;;; Buffer flip
-(setq iflipb-wrap-around t
-      iflipb-ignore-buffers "\\*.*\\*")
+(setq iflipb-wrap-around t)
 (global-set-key (kbd "C-,") 'iflipb-next-buffer)
 (global-set-key (kbd "C-.") 'iflipb-previous-buffer)
-(setq iflipb-ignore-buffers "")
+(setq iflipb-ignore-buffers (list (rx line-start "*Backtrace")
+                                  (rx line-start "*Help")
+                                  (rx line-start "*Messages")
+                                  (rx line-start "*Calendar")
+                                  (rx line-start "magit-process")
+                                  (rx line-start "*" (zero-or-more anything) "output*")
+                                  (rx line-start "*straight-process*")))
 
 ;;; Buffer management using iBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)

@@ -40,6 +40,7 @@
             ("\\.epub?\\'" ,cmd)
             ("\\.md\\'" ,cmd))))
   
+  
   (setq dired-omit-files
         (concat dired-omit-files
               "\\|^.DS_Store$\\|^.git*\\|^.svn$\\|^.vscode$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
