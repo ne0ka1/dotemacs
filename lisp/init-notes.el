@@ -29,8 +29,8 @@
 
 ;;; zk
 (require 'zk)
-(setq zk-directory "~/Notes"
-      zk-file-extension "md"
+;; (setq zk-directory "~/Notes"
+(setq zk-file-extension "md"
       zk-id-time-string-format "%Y-%m-%d-%H%M"
       zk-id-regexp "\\([0-9]\\{4\\}\\)-\\([0-9]\\{2\\}\\)-\\([0-9]\\{2\\}\\)-\\([0-9]\\{4\\}\\)"
       zk-link-and-title-format "[[%i]] %t"

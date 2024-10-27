@@ -16,7 +16,7 @@
   (set-face-attribute 'default nil :family "Consolas" :height 140))
  (sys/macp
   (set-face-attribute 'default nil :family "SFMono Nerd Font" :height 170)
-  (set-face-attribute 'variable-pitch nil :family "Palatino" :height 170)
+  (set-face-attribute 'variable-pitch nil :family "Palatino" :height 190)
   (set-fontset-font t 'symbol "Apple Color Emoji" nil 'prepend))
  (sys/linuxp
   (set-face-attribute 'default nil :family "SFMono Nerd Font Mono" :height 130)
