@@ -1,14 +1,5 @@
 ;;; init-editing.el --- Editing Tricks
 (straight-use-package 'tempel)          ; https://github.com/minad/tempel
-<<<<<<< HEAD
-=======
-
-;;; which-key
-(add-hook 'emacs-startup-hook 'which-key-mode)
-(setq-default which-key-idle-delay 1.5)
-(global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
-(global-set-key (kbd "C-h C-m") 'which-key-show-major-mode) ; 'view-order-manuals
->>>>>>> a6f3932 (Use popper and shell-pop; refine init-edit)
 
 ;;; which-key
 (add-hook 'emacs-startup-hook 'which-key-mode)
@@ -39,7 +30,6 @@
 ;; open url/file
 (global-set-key (kbd "C-c C-o") 'find-file-at-point)
 
-<<<<<<< HEAD
 ;;; Keybindings
 (global-set-key (kbd "M-j") #'evil-join)
 
@@ -62,19 +52,12 @@
 
 (global-set-key (kbd "C-x C-r") #'rename-current-buffer-file) ; 'find-file-read-only
 
-=======
->>>>>>> a6f3932 (Use popper and shell-pop; refine init-edit)
 ;;; Check spelling
 (add-hook 'text-mode-hook #'flyspell-mode)
 (with-eval-after-load 'flyspell
   ;; conflict with iflipb
   (define-key flyspell-mode-map (kbd "C-.") nil) ;flyspell-auto-correct-word
   (define-key flyspell-mode-map (kbd "C-,") nil) ;flyspell-goto-next-error
-<<<<<<< HEAD
-=======
-  ;; conflict with avy
-  (define-key flyspell-mode-map (kbd "C-;") nil) ;flyspell-auto-correct-previous-word
->>>>>>> a6f3932 (Use popper and shell-pop; refine init-edit)
 )
 
 ;;; Tempel

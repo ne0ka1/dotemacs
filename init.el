@@ -30,7 +30,6 @@
 ;;; extra
 (require 'init-prog)
 (require 'init-dired)
-(require 'init-shell)
 (require 'init-notes)
 (require 'init-utility)
 
@@ -41,7 +40,7 @@
 
 ;;; lang
 (require 'init-c)
-;; (require 'init-lisp)
+(require 'init-lisp)
 ;; (require 'init-python)
 ;; (require 'init-latex)
 
