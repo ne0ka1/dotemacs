@@ -6,7 +6,7 @@
 (straight-use-package 'dashboard)       ; https://github.com/emacs-dashboard/emacs-dashboard
 (straight-use-package 'anzu)            ; https://github.com/emacsorphanage/anzu
 (straight-use-package 'evil-anzu)       ; https://github.com/emacsorphanage/evil-anzu
-(straight-use-package 'nano-modeline)   ; https://github.com/rougier/nano-modeline
+(straight-use-package 'telephone-line)  ; https://github.com/dbordak/telephone-line
 (straight-use-package                   ; https://github.com/manateelazycat/awesome-tray
  '(awesome-tray :type git :host github :repo "manateelazycat/awesome-tray"))
 
@@ -51,34 +51,26 @@
 (with-eval-after-load 'evil
   (require 'evil-anzu))
 
-;;; nano-modeline
-(require 'nano-modeline)
-
-(add-hook 'prog-mode-hook            #'nano-modeline-prog-mode)
-(add-hook 'text-mode-hook            #'nano-modeline-text-mode)
-(add-hook 'org-mode-hook             #'nano-modeline-org-mode)
-(add-hook 'pdf-view-mode-hook        #'nano-modeline-pdf-mode)
-(add-hook 'mu4e-headers-mode-hook    #'nano-modeline-mu4e-headers-mode)
-(add-hook 'mu4e-view-mode-hook       #'nano-modeline-mu4e-message-mode)
-(add-hook 'elfeed-show-mode-hook     #'nano-modeline-elfeed-entry-mode)
-(add-hook 'elfeed-search-mode-hook   #'nano-modeline-elfeed-search-mode)
-(add-hook 'term-mode-hook            #'nano-modeline-term-mode)
-(add-hook 'xwidget-webkit-mode-hook  #'nano-modeline-xwidget-mode)
-(add-hook 'messages-buffer-mode-hook #'nano-modeline-message-mode)
-(add-hook 'org-capture-mode-hook     #'nano-modeline-org-capture-mode)
-(add-hook 'org-agenda-mode-hook      #'nano-modeline-org-agenda-mode)
-
-(setq nano-modeline-padding '(0.1 . 0.1))
-(nano-modeline-text-mode)
-
 ;;; awesome-tray
 (setq awesome-tray-active-modules
       '("anzu" "clock")
       awesome-tray-date-format "%-H:%-M"
-;; already hide the mode line in early-init.el by setting mode-line-format.
-;; any packages that mess with the mode-line can re-enable the mode-line.
-;; disable them in their own settings, like anzu.
       awesome-tray-hide-mode-line nil)
 (add-hook 'emacs-startup-hook 'awesome-tray-mode)
+
+;;; telephone-line
+(setq telephone-line-lhs
+      '((evil   . (telephone-line-evil-tag-segment))
+        (accent . (telephone-line-vc-segment
+                   telephone-line-erc-modified-channels-segment
+                   telephone-line-process-segment))
+        (nil    . (telephone-line-buffer-segment))))
+
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment))
+        (evil   . (telephone-line-airline-position-segment))))
+
+(telephone-line-mode)
 
 (provide 'init-interface)

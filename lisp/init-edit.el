@@ -2,7 +2,7 @@
 (straight-use-package 'tempel)          ; https://github.com/minad/tempel
 
 ;;; which-key
-(add-hook 'emacs-startup-hook 'which-key-mode)
+(which-key-mode)
 (setq-default which-key-idle-delay 1.5)
 (global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
 (global-set-key (kbd "C-h C-m") 'which-key-show-major-mode) ; 'view-order-manuals
