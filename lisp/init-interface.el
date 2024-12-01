@@ -3,6 +3,7 @@
 ;; Font, Theme, Dashboard, Modeline
 ; https://github.com/purcell/color-theme-sanityinc-tomorrow
 (straight-use-package 'color-theme-sanityinc-tomorrow)
+(straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'dashboard)       ; https://github.com/emacs-dashboard/emacs-dashboard
 (straight-use-package 'anzu)            ; https://github.com/emacsorphanage/anzu
 (straight-use-package 'evil-anzu)       ; https://github.com/emacsorphanage/evil-anzu

@@ -1,4 +1,5 @@
 ;;; init-prog.el --- IDE experience for programming
+;; reference jump, documents, git client, file explorer.
 
 (straight-use-package 'dumb-jump)       ; https://github.com/jacktasia/dumb-jump
 (straight-use-package 'devdocs)         ; https://github.com/astoff/devdocs.el
@@ -25,6 +26,8 @@
 (setq shr-use-fonts nil)                       ; devdocs use shr to render texts
 (add-hook 'c-mode-hook
           (lambda () (setq-local devdocs-current-docs '("c"))))
+(add-hook 'c++-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("cpp"))))
 
 ;;; Magit
 (require 'evil-magit)

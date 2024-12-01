@@ -1,9 +1,9 @@
 ;;; init-utility.el --- Utilities of Emacs
 
-;; dependency of xwwp-full. should install manually
-(straight-use-package 'ctable)          ; https://github.com/kiwanami/emacs-ctable
-
 ;;; Webkit browser
+;; https://github.com/kchanqvq/xwwp enhance the integrated xwidget-webkit browser
+(straight-use-package 'ctable)          ; https://github.com/kiwanami/emacs-ctable
+;; (dependency of xwwp-full. should install manually)
 (add-to-list 'load-path (expand-file-name "site-lisp/xwwp-full" user-emacs-directory))
 (require 'xwwp-full)
 (global-set-key (kbd "C-c b") 'xwwp)
@@ -50,9 +50,5 @@
 	         do (my-elfeed-db-remove-entry (elfeed-entry-id entry)))))
     (elfeed-search-update--force))
 )
-
-(when sys/macp
-  (straight-use-package 'nov)           ; https://depp.brause.cc/nov.el/
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 (provide 'init-utility)

@@ -42,7 +42,7 @@
 (require 'init-c)
 (require 'init-lisp)
 ;; (require 'init-python)
-;; (require 'init-latex)
+(require 'init-latex)
 
 ;;; custom file
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
