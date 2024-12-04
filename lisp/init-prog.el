@@ -5,11 +5,10 @@
 (straight-use-package 'devdocs)         ; https://github.com/astoff/devdocs.el
 (straight-use-package 'magit)           ; https://github.com/magit/magit
 (straight-use-package 'evil-magit)      ; https://github.com/emacs-evil/evil-magit
-(straight-use-package 'all-the-icons)	; https://github.com/domtronn/all-the-icons.el
 (straight-use-package 'treemacs)        ; https://github.com/Alexander-Miller/treemacs
 (straight-use-package 'treemacs-evil)   ; included in treemacs
 (straight-use-package 'treemacs-magit)  ; included in treemacs
-(straight-use-package 'treemacs-all-the-icons)  ; included in treemacs
+(straight-use-package 'treemacs-nerd-icons)     ; https://github.com/rainstormstudio/treemacs-nerd-icons
 
 ;;; Xref and dumb-jump
 ;; use faster search tool
@@ -28,6 +27,10 @@
           (lambda () (setq-local devdocs-current-docs '("c"))))
 (add-hook 'c++-mode-hook
           (lambda () (setq-local devdocs-current-docs '("cpp"))))
+(add-hook 'java-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("openjdk~21"))))
+(add-hook 'kotlin-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
 
 ;;; Magit
 (require 'evil-magit)
@@ -43,10 +46,9 @@
 (with-eval-after-load 'treemacs
   (require 'treemacs-evil)
   (require 'treemacs-magit)
-  (require 'treemacs-all-the-icons)
+  (require 'treemacs-nerd-icons)
 
-  (treemacs-load-theme 'all-the-icons)
-
+  (treemacs-load-theme "nerd-icons")
   (treemacs-filewatch-mode)
   (treemacs-git-mode 'simple)
 

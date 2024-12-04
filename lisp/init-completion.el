@@ -73,11 +73,11 @@
 
 ;; nerd-icon
 (require 'nerd-icons)
-(cond
- (sys/macp
-  (setq nerd-icons-font-family "SFMono Nerd Font"))
- (sys/linuxp
-  (setq nerd-icons-font-family "SFMono Nerd Font Mono")))
+;; (cond
+;;  (sys/macp
+;;   (setq nerd-icons-font-family "SFMono Nerd Font"))
+;;  (sys/linuxp
+;;   (setq nerd-icons-font-family "SFMono Nerd Font Mono")))
 
 (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
 
