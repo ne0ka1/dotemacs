@@ -46,6 +46,9 @@
 ;; Auto save buffer (important for org gtd files)
 (auto-save-visited-mode 1)
 
+;; safer deletion
+(setq delete-by-moving-to-trash t)
+
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
 

@@ -1,4 +1,7 @@
 ;;; init-org-gtd.el --- Org mode GTD implementation and Expansion
+
+(straight-use-package 'nano-agenda)     ; https://github.com/rougier/nano-agenda
+
 ;;; Items
 ;; Todos
 (setq org-todo-keywords
@@ -30,38 +33,12 @@
         ("NEXT")
         nil "\[[a-z]+\]"))
 
-;;; Capture
-(defun my-journal-capture-target ()
-  (find-file "~/org/journal.org")
-  (let ((date (format-time-string "%Y-%m-%d %A")))
-    (goto-char (org-find-exact-headline-in-buffer date nil t))))
-
 (setq org-capture-templates
  '(("t" "Todo" entry (file "~/org/inbox.org")
      "* TODO %?\n%U\n\n  %i")
     ("l" "Link" entry (file "~/org/inbox.org")
      "* %?\n%U\n\n  %i\n  %a")
-    ("j" "Journal" entry (function my-journal-capture-target)
-     "** %<%R> %?")
 ))
-
-;;; Journal
-;; Run this helper function to populate the journal file for a month
-(require 'calendar)
-
-(defun my-insert-journal-entry ()
-  "Insert lines like '* YYYY-MM-DD Day' for the actual number of days in the current month."
-  (interactive)
-  (let* ((current-time (current-time))
-         (decoded-time (decode-time current-time))
-         (year (nth 5 decoded-time))
-         (month (nth 4 decoded-time))
-         (days-in-month (calendar-last-day-of-month month year)))
-    (dotimes (day days-in-month)
-      (let ((date (encode-time 0 0 0 (1+ day) month year)))
-        (insert (format "* %s %s\n"
-                        (format-time-string "%Y-%m-%d" date)
-                        (format-time-string "%A" date)))))))
 
 ;;; Refile
 (setq org-refile-targets '((nil :maxlevel . 9) ; Headings in the current buffer, up to level 9
@@ -70,7 +47,7 @@
       org-refile-use-outline-path t)		; Provide refile targets as paths
 
 ;;; Archive
-(setq org-archive-location "~/org/archive/log.org::datetree/::"
+(setq org-archive-location "~/org/log.org::datetree/::"
       org-archive-save-context-info '(file olpath itags))
 
 ;;; Time and Clock
@@ -87,7 +64,9 @@
 
 ;;; Agenda
 ;; Agenda files
-(setq org-agenda-files '("~/org/"))
+(setq org-agenda-files '("~/org/inbox.org"
+                         "~/org/cs.org"
+                         "~/org/phil.org"))
 
 ;; Display settings.
 (setq org-agenda-window-setup 'current-window

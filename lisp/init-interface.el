@@ -34,7 +34,7 @@
 (global-set-key (kbd "C-x -") #'my-change-font-size)
 
 ;;; Theme
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'sanityinc-tomorrow-day t)
 
 ;;; Dashboard
 (dashboard-setup-startup-hook)
