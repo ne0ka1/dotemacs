@@ -1,11 +1,5 @@
 ;;; init-package.el
 
-;; Modify load path after straight.el is set up, otherwise Org version crash
-(let ((straight-org
-       (expand-file-name "straight/build/org" user-emacs-directory)))
-  (when (file-exists-p straight-org)
-    (add-to-list 'load-path straight-org)))
-
 ;; Using straight.el for package management 
 (setq straight-check-for-modifications nil) ; Disable checking for speedup
 
@@ -30,10 +24,6 @@
 (straight-use-package 'no-littering)
 (require 'no-littering)
 (no-littering-theme-backups)
-
-;; org
-(straight-use-package 'org)
-(require 'org)
 
 ;; emacs profile
 (straight-use-package 'esup)

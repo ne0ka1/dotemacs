@@ -2,6 +2,9 @@
 (straight-use-package 'tempel)          ; https://github.com/minad/tempel
 
 ;;; which-key
+(when (version< emacs-version "30.0")
+  (straight-use-package 'which-key))
+
 (which-key-mode)
 (setq-default which-key-idle-delay 1.5)
 (global-set-key (kbd "C-h C-h") nil)    ; 'help-for-help
