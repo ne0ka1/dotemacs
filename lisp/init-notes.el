@@ -2,6 +2,7 @@
 
 (straight-use-package 'markdown-mode)   ; https://jblevins.org/projects/markdown-mode/
 (straight-use-package 'olivetti)        ; https://github.com/rnkn/olivetti
+(straight-use-package 'obsidian)        ; https://github.com/licht1stein/obsidian.el
 (straight-use-package 'consult-notes)   ; https://github.com/mclear-tools/consult-notes
 
 ;;; Markdown-mode
@@ -27,6 +28,25 @@
 
 (add-hook 'org-mode-hook 'my-writing-mode)
 (add-hook 'markdown-mode-hook 'my-writing-mode)
+
+;;; Obsidian
+(obsidian-specify-path "~/mind")
+
+;; Define obsidian-mode bindings
+(add-hook
+ 'obsidian-mode-hook
+ (lambda ()
+   ;; Replace standard command with Obsidian.el's in obsidian vault:
+   (local-set-key (kbd "C-c C-o") 'obsidian-follow-link-at-point)
+
+   ;; Use either `obsidian-insert-wikilink' or `obsidian-insert-link':
+   (local-set-key (kbd "C-c C-l") 'obsidian-insert-wikilink)
+
+   ;; Following backlinks
+   (local-set-key (kbd "C-c C-b") 'obsidian-backlink-jump)))
+
+(global-set-key (kbd "C-c o") 'obsidian-jump)
+(global-obsidian-mode)
 
 ;;; consult-notes
 (setq consult-notes-file-dir-sources

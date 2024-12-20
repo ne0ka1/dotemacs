@@ -22,6 +22,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; straight config
+(setq straight-vc-git-default-protocol 'ssh
+      straight-vc-git-default-clone-depth 1)
+
 ;; no-littering
 (straight-use-package 'no-littering)
 (require 'no-littering)
