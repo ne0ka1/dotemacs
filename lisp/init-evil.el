@@ -1,6 +1,7 @@
 ;;; init-evil.el --- Lightweight Evil
 
 (straight-use-package 'evil)            ; https://github.com/noctuid/evil-guide 
+(straight-use-package 'evil-terminal-cursor-changer) ; https://github.com/7696122/evil-terminal-cursor-changer 
 
 ;;; Some variables affect the way Evil is loaded, so set these before Evil is loaded.
 
@@ -17,6 +18,11 @@
 (require 'evil)
 (evil-mode)
 
+;;; terminal cursor
+(unless (display-graphic-p)
+  (require 'evil-terminal-cursor-changer)
+  (evil-terminal-cursor-changer-activate)) ; or (etcc-on)
+
 ;;; Evil normal & motion state map
 ;; Add scroll keys
 (evil-global-set-key 'motion (kbd "SPC") 'scroll-up-command)
@@ -31,7 +37,6 @@
 (evil-global-set-key 'motion (kbd "C-v") nil) ; evil-visual-block
 (evil-global-set-key 'motion (kbd "C-y") nil) ; evil-scroll-line-up
 (evil-global-set-key 'motion (kbd "C-e") nil) ; evil-scroll-line-down
-(evil-global-set-key 'normal (kbd "C-.") nil) ; evil-repeat-pop; for iflipb
 
 ;; M-character
 (evil-global-set-key 'normal (kbd "M-.") nil) ; evil-repeat-pop-next

@@ -3,6 +3,9 @@
 (straight-use-package 'diredfl)         ; https://github.com/purcell/diredfl
 
 ;;; vanilla dired
+(with-eval-after-load 'dired-mode
+  (define-key dired-mode-map (kbd "M-s") nil)) ; conflict with consult-ripgrep
+
 ;; Guess a default target directory
 (setq dired-dwim-target t)
 

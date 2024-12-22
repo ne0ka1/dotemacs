@@ -4,7 +4,6 @@
 (straight-use-package 'rg)       ; https://github.com/dajva/rg.el
 (straight-use-package 'avy)      ; https://github.com/abo-abo/avy
 (straight-use-package 'consult)  ; https://github.com/minad/consult
-(straight-use-package 'iflipb)   ; https://github.com/jrosdahl/iflipb
 (straight-use-package 'popper)   ; https://github.com/karthink/popper
 
 ;;; avy
@@ -23,6 +22,7 @@
 ;;; Consult
 (global-set-key (kbd "C-c m") 'consult-imenu)	   ; i"m"enu
 (global-set-key (kbd "C-c T") 'consult-theme)	   ; "T"heme
+(global-set-key (kbd "C-c A") 'consult-org-agenda) ; "A"genda
 (global-set-key (kbd "C-h s") 'consult-info)       ; 'describe-syntax
 (global-set-key [remap Info-search] 'consult-info) ; key "s" in Info-mode
 (global-set-key (kbd "C-x b") 'consult-buffer)     ; 'switch-buffer
@@ -31,16 +31,9 @@
 (global-set-key (kbd "M-s") 'consult-ripgrep)      ; isearch related prefix key
 (global-set-key (kbd "M-g g") 'consult-goto-line)  ; 'goto-line
 
-;;; Buffer flip
-(setq iflipb-wrap-around t)
-(global-set-key (kbd "C-,") 'iflipb-next-buffer)
-(global-set-key (kbd "C-.") 'iflipb-previous-buffer)
-(setq iflipb-wrap-around t
-      iflipb-ignore-buffers "\\*.*\\*")
-(global-set-key (kbd "C-,") 'iflipb-next-buffer)
-(global-set-key (kbd "C-.") 'iflipb-previous-buffer)
-(setq iflipb-ignore-buffers "")
-
+;; use consult to select xref locations with preview
+(setq xref-show-definitions-function #'consult-xref
+      xref-show-xrefs-function #'consult-xref)
 ;;; Buffer management using iBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 

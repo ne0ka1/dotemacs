@@ -16,7 +16,6 @@
              (xref--xref-buffer-mode . emacs)
              (compilation-mode . emacs)
              (dashboard-mode . emacs)
-	     (deft-mode . emacs)
              (elfeed-search-mode . emacs)
 
              (eshell-mode . insert)
@@ -27,11 +26,8 @@
 	     (treemacs-mode . normal)))      ; for treemacs-evil
   (evil-set-initial-state (car states) (cdr states)))
 
-;; Make sure insert state
+;; Insure insert state
 (add-hook 'org-capture-mode-hook #'evil-insert-state) ; Org capture
-
-(with-eval-after-load 'org-journal
-  (add-hook 'org-journal-after-entry-create-hook #'evil-insert-state)) ; New journal entry
 
 ;;; Macros for evil
 (defmacro my-evil-search-macro (local-map)

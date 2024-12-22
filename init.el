@@ -28,7 +28,7 @@
 (require 'init-interface)
 
 ;;; org
-(require 'init-org-base)
+(require 'init-org)
 ;; (require 'init-org-babel)
 (require 'init-org-gtd)
 

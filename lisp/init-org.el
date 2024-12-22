@@ -2,7 +2,7 @@
 
 (require 'init-evil)
 
-(straight-use-package 'org-modern)
+(straight-use-package 'org-modern)      ; https://github.com/minad/org-modern 
 (straight-use-package 'evil-org)        ; https://github.com/Somelauw/evil-org-mode
 
 ;;; Evil Org
@@ -18,11 +18,8 @@
 ;; Global bindings
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-'") 'org-cycle-agenda-files)
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-,") nil) ; org-cycle-agenda-files. iflipb
   (define-key org-mode-map (kbd "C-'") nil) ; org-cycle-agenda-files. flyspell
 )
 
@@ -76,4 +73,4 @@
 (setq org-hide-block-startup t		; Fold all blocks
       org-startup-folded 'content)	; Show contents
 
-(provide 'init-org-base)
+(provide 'init-org)

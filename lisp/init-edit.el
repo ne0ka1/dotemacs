@@ -57,11 +57,6 @@
 
 ;;; Check spelling
 (add-hook 'text-mode-hook #'flyspell-mode)
-(with-eval-after-load 'flyspell
-  ;; conflict with iflipb
-  (define-key flyspell-mode-map (kbd "C-.") nil) ;flyspell-auto-correct-word
-  (define-key flyspell-mode-map (kbd "C-,") nil) ;flyspell-goto-next-error
-)
 
 ;;; Tempel
 ;; Configure Tempel

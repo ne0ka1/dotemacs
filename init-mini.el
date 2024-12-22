@@ -1,5 +1,5 @@
 ;;; init-mini.el
-;; emacs -q --load ~/.emacs.d/init-mini.el
+;; emacs -q -l ~/.emacs.d/init-mini.el
 
 ;;; configs in early-init.el
 (setq package-enable-at-startup nil)
@@ -28,13 +28,6 @@
 (require 'init-defaults)
 (require 'init-evil)
 (require 'init-bindings)
-
-;;; Navigation
-(straight-use-package 'iflipb)
-(setq iflipb-wrap-around t
-      iflipb-ignore-buffers nil)
-(global-set-key (kbd "C-,") 'iflipb-next-buffer)
-(global-set-key (kbd "C-.") 'iflipb-previous-buffer)
 
 ;;; Interface
 (cond
