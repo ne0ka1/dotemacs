@@ -31,3 +31,4 @@ Note that you need to update the value of ~rime-emacs-module-header-root~ after 
 
 On mac, ~gls~ program is preferred for Dired.
 This is usually installed by ~emacs-plus~ package.
+~Marked 2~ app may be used for previewing markdown files.

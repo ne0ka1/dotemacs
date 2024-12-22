@@ -1,6 +1,18 @@
 ;;; init-org-base.el --- Org mode modern appearance and editing
 
+(require 'init-evil)
+
 (straight-use-package 'org-modern)
+(straight-use-package 'evil-org)        ; https://github.com/Somelauw/evil-org-mode
+
+;;; Evil Org
+;; Basic keys are always enabled
+(with-eval-after-load 'org
+  (require 'evil-org)
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo))
+  (setq evil-org-use-additional-insert t)	; Use additional bindings in insert mode
+)
 
 ;;; General
 ;; Global bindings
@@ -9,10 +21,10 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-'") 'org-cycle-agenda-files)
 
-;; Free keys used by iflipb
-(define-key org-mode-map (kbd "C-,") nil) ; org-cycle-agenda-files
-;; Free keys used in flyspell
-(define-key org-mode-map (kbd "C-'") nil) ; org-cycle-agenda-files
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-,") nil) ; org-cycle-agenda-files. iflipb
+  (define-key org-mode-map (kbd "C-'") nil) ; org-cycle-agenda-files. flyspell
+)
 
 ;; Applications for opening 'file:path' items in a document
 (setq org-file-apps '((auto-mode .emacs)

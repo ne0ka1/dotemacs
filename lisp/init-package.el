@@ -17,7 +17,7 @@
   (load bootstrap-file nil 'nomessage))
 
 ;; straight config
-(setq straight-vc-git-default-protocol 'ssh
+(setq straight-vc-git-default-protocol 'https
       straight-vc-git-default-clone-depth 1)
 
 ;; no-littering
@@ -27,6 +27,7 @@
 
 ;; emacs profile
 (straight-use-package 'esup)
+(setq esup-depth 0) ;; fix a bug. see https://github.com/jschaf/esup/issues/54
 
 ;; exec-path-from-shell
 (straight-use-package 'exec-path-from-shell)

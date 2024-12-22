@@ -1,7 +1,6 @@
 ;;; init-evil.el --- Lightweight Evil
 
 (straight-use-package 'evil)            ; https://github.com/noctuid/evil-guide 
-(straight-use-package 'evil-org)        ; https://github.com/Somelauw/evil-org-mode
 
 ;;; Some variables affect the way Evil is loaded, so set these before Evil is loaded.
 
@@ -48,12 +47,5 @@
 (evil-global-set-key 'insert (kbd "C-w") 'evil-delete-backward-word)
 (evil-global-set-key 'insert (kbd "C-u") 'evil-delete-back-to-indentation)
 (evil-global-set-key 'insert (kbd "M-h") (lookup-key global-map (kbd "C-h"))) ; mark-paragraph
-
-;;; Evil Org
-;; Basic keys are always enabled
-(require 'evil-org)
-(add-hook 'org-mode-hook 'evil-org-mode)
-(evil-org-set-key-theme '(textobjects insert navigation additional shift todo))
-(setq evil-org-use-additional-insert t)	; Use additional bindings in insert mode
 
 (provide 'init-evil)

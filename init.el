@@ -27,15 +27,9 @@
 (require 'init-input)
 (require 'init-interface)
 
-;;; extra
-(require 'init-prog)
-(require 'init-dired)
-(require 'init-notes)
-(require 'init-utility)
-
 ;;; org
 (require 'init-org-base)
-(require 'init-org-babel)
+;; (require 'init-org-babel)
 (require 'init-org-gtd)
 
 ;;; lang
@@ -44,6 +38,13 @@
 ;; (require 'init-python)
 (require 'init-latex)
 (require 'init-java)
+(require 'init-markdown)
+
+;;; extra
+(require 'init-prog)
+(require 'init-dired)
+(require 'init-notes)
+;; (require 'init-utility)
 
 ;;; custom file
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))

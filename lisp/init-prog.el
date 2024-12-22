@@ -1,6 +1,8 @@
 ;;; init-prog.el --- IDE experience for programming
 ;; reference jump, documents, git client, file explorer.
 
+(require 'init-evil)
+
 (straight-use-package 'dumb-jump)       ; https://github.com/jacktasia/dumb-jump
 (straight-use-package 'devdocs)         ; https://github.com/astoff/devdocs.el
 (straight-use-package 'magit)           ; https://github.com/magit/magit
@@ -33,8 +35,9 @@
           (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
 
 ;;; Magit
-(require 'evil-magit)
-(setq evil-magit-use-y-for-yank nil)
+(with-eval-after-load 'magit
+  (require 'evil-magit)
+  (setq evil-magit-use-y-for-yank nil))
 
 ;;; Treemacs
 (global-set-key (kbd "M-0") 'treemacs-select-window)
